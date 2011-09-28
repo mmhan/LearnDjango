@@ -102,12 +102,17 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'mysite.urls'
 
+import os.path
+
 TEMPLATE_DIRS = (
-	#'D:/learn_django/mysite/templates/' -- absolute path.
+	#'D:/learn_django/mysite/templates/', # -- absolute path.
 	
+    os.path.join(os.path.dirname(__file__), 'templates').replace('\\', '/'), # -- relative path.
+    
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    
 )
 
 INSTALLED_APPS = (

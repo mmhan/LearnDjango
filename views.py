@@ -1,3 +1,8 @@
+from django.template import Context
+from django.template.loader import get_template
+
+from django.shortcuts import render_to_response
+
 from django.http import HttpResponse, Http404
 import datetime
 
@@ -14,8 +19,9 @@ def current_datetime(request, offset = 0):
         except ValueError:
             raise Http404()
         dt = datetime.datetime.now() + datetime.timedelta(hours = offset)
-        html= "<html><body>In %s hour(s), it will be %s.</body></html>" % (offset, dt)
+        t = get_template('datetime.html')
+        html= t.render(Context({'current_date' : dt, 'offset': offset}))
+        return HttpResponse(html)
     else:
         now = datetime.datetime.now()
-        html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html)
+        return render_to_response('datetime.html', {'current_date': now, 'offset': offset}) #locals() is a useful function for this, a little risky

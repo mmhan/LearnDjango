@@ -1,0 +1,16 @@
+<!DOCTYPE  HTML>
+<html lang="en">
+	<head>
+		<title>Time</title>
+	</head>
+	<body>
+		<h1>Helpful timestamp site</h1>
+		<p>
+		{% if offset %}
+			In {{ offset }} hour(s), it will be {{ current_date }}.
+		{% else %}
+			It is now {{ current_date }}.
+		{% endif %}
+		</p>
+	</body>
+</html>
